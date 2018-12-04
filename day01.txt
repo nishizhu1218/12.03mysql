@@ -1,0 +1,214 @@
+﻿cala 计算器
+
+2.软件工程：
+2.1：发展阶段
+-程序设计阶段（1946-1955）
+ 尚无软件概念，从程序设计主要为特定的硬件服务，以实现科学计算，规模很小，还没有软件公司。
+-软件设计阶段（1956-1970）
+硬件环境相对稳定， 出现了“软件作坊”的开发组织，开发并出售软件。随着软件需要求日益复杂，代码规范日益庞大，软件质量和开发周期日益难受控制，导致了“软件危机”的产生。
+-软件工程阶段（1970-至今）
+软件公司开始学习建筑行业的质量管理方法，逐渐建立起一整套的软件过程规范流程，不断提出优化软件质量的改进方法。
+
+计算机早期用处：存储文件。IBM->dos系统需要软件控制。  BillGates->Microsoft->Windows
+
+2.2：软件开发流程/软件过程/软件生命周期
+
+第一部分:软件定义期
+（1）可行性研究阶段——可行性研究报告
+	从技术、人员、资金、时间、设备、政策法规、风俗、回报率
+ (2)需求分析阶段——软件需求说明书
+ 功能性需求：比如购物车、注册登录……等
+	PS：“学子商城”需要分析：
+		前台子系统
+		    产品模块：首页/列表/详情
+		    用户模块：注册/登陆/收藏夹/购物车/用户中心
+		    购物车模块：添加购物车/修改购物车/下单
+	www.codeboy.com/admin/login.html(后台管理)
+	        后台子系统
+		    产品模块：/列表/添加/删除修改
+		    用户模块：列表/删除、
+		    订单模块：列表/搜索
+		移动端子系统（小程序/APP/网页）
+		和前台子系统功能一致
+ 非功能性需求：比如实时操作
+
+第二部分：软件开发期
+（1）概要设计阶段
+	技术选型/功能模块设计/数据结构
+（2）详细设计阶段
+	模块的实现细节/属性/方法/算法。。。。。
+（3）编码阶段
+	UI设计师——前端工程师——后端工程师
+（4）项目测试阶段
+	QA
+
+第三部分：软件维护期
+（1）项目部署阶段：部署到服务器
+（2）项目维护阶段
+
+2.3 WEB项目中的服务器
+ Server:为客户端提供各种服务的功能强大的计算机。
+ 访问服务器:
+ （1）服务器的地址：域名/IP地址
+ （2）对应服务的端口
+ （3）提供该服务所使用的协议
+ 访问个人web服务器上的网页
+ 确定已经启动了服务器  start.cmd
+ 方式一：
+ （1）写协议： http://
+ （2）写域名：localhost（免费域名）
+  (3)写端口号：80     默认端口号
+  http://localhost:80  本地的域名
+  关闭服务器——直接关闭DOS
+  方式二：
+  IP地址
+  http://127.0.0.1:80  本地的IP地址
+
+获取自己电脑在局域网的IP地址:		
+运行->cmd->ipconfig
+IP:176.202.56.38  当前电脑在局域网的IP地址
+
+
+练习：在Public下创建文件demo.html，使用浏览器去访问该文件
+练习：在public下创建文件index.html,使用浏览器去访问该文件
+      index.html 主页显示
+      若想要显示其他网页，需要手动输入地址
+
+sublime text3
+
+
+课后任务：
+（1）复习内容（课程体系、软件生命周期、服务器的访问形式：IP地址、域名、）
+（2）练习：
+创建网页，同桌之间相互访问
+（3）预习MySQL
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 通过命令行 ping jd.com 来访问服务器
+
+
+
+
+
+服务器找寻服务可以使用端口号
+浏览网页时，用的web服务
+访问服务器下的WEB（网页）服务
+端口号在域名后  “ ：端口号  ”  书写
+
+
+要使用服务还需要语言，要访问服务器下的某一个服务，网页服务需要http协议  https 是带有安全的http协议
+ http://   www.baidu.com:    80/
+（协议）    （域名）      （端口号）
+
+网络——网络共享中心中关闭防火墙
+ 		
+ftp:176.202.0.158  
+
+
+
+①下载git   node          pwd  路径显示
+在本地创建SSH key
+ssh-keygen -t rsa -C "your_email@youremail.com"
+添加钥匙
+本地仓库传到github上去，在此之前还需要设置username和email，
+$ git config --global user.name "your name"
+$ git config --global user.email "your_email@youremail.com"
+echo(输出)“”内容“”>>文件
+git init （初始化仓库） 
+git add 文件   （添加到任务栈）打包
+git commit -m "说明"   （添加打包说明）
+git remote add origin git@github.com:yourName/yourRepo.git   （指定远端仓库）
+
+第二次推送（保证同一个库）
+git add 文件（添加到任务栈）打包
+git commit -m "说明"   （添加打包说明）
+git push    （推送）
+
+
+下载到其他电脑
+git clone 地址      （到自己的电脑上复制下载）
+
+
+改了之后推送到github
+git add 文件（添加到任务栈）打包
+git commit -m "说明"   （添加打包说明）
+git push    （推送）
+
+
+到学校电脑
+git pull   版本更新
+
+htmler.cn
+
+
+博客：
+原生 插件 框架
+js+dom+bom
+
+优点：兼容性高
+缺点：效率低
+
+插件：封装原生
+框架：vue/react/ng
+
+hexo
+
+js(v8)引擎
+npm包管理器
+
+npm install     hexo-cli              -g   
+相当于应用市场     安装    框架(脚手架)    全局安装
+
+visual code  写博客的软件
+设置——save——autosave——afterDelay   （设置自动保存）
+font——fontsize 18(设置字体)
+打开bolg
+ctrl+~ 打开控制台npm install    若不动报错 输入cnpm（淘宝镜像）  i这个命令
+ hexo s  启动服务
+
+cnpm搜索下载
+使用说明
+
+node_modules   依赖包  
+source  博客源文件
+themes 主题
+.git
+packgae,json 是node_modules  的一个清单
+-config.yml     博客的配置文件
+hexo。io  官网
+  主题：gal     tommy
+
+
+为了博客响应快速，把主题下languages文件夹删掉（留ZHCN）
+
+easyicom图标网站
+
+替换网站图标：主题文件下——source——css——images
+
+浏览器清缓存F12——network——Disable cache
+
+新建博客文档，——hexo new “文档名”
+
+将博客推到github上：
+安装环境
+ BOLG——右击git bash here —— cnpm i hexo-deployer-git -S
+到github仓库创建新仓库，仓库名：用户名.github.io
+打开-config.yml
+  type: git
+  
+repository: git@github.com:qi911yx/qi911yx.github.io.git   (仓库的地址)
+branch: master
+
+hexo d
+
+浏览器地址栏：用户名.github.io可以直接访问
+
+
+

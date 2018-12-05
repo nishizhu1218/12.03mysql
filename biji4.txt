@@ -1,0 +1,151 @@
+列约束
+（1）主键约束——PRIMARY KEY
+（2）唯一约束——UNI
+（3）非空约束——NOT NULL
+声明了非空约束的列上不能插入null
+（4）默认值约束——DEFAULT
+可以使用DEFAULT 关键字声明默认值，有两种方式可以应用默认值
+INSERT INTO xz_laptop_family VALUES(40,"苹果",DEFAULT);
+INSERT INTO xz_laptop_family VALUES()
+zhangsan@tedu.cn   123456
+chengliang@tedu.cn  123456
+（检查约束)——CHECK
+     检查约束可以对插入的数据进行检验
+CREATE TABLE student（
+age TINYINT(age>=18 AND age<=60)
+ ）;
+mysql不支持检查约束，会降低数据的插入速度。
+（6）外键约束——FOREIGN KEY
+声明了外键约束的列，取值必须在另一个表的主键列上出现过，列类型要保持一致，取值可以是NULL
+FOREIGN KEY(familyid)
+REFERENCEAS xz_laptop_family(fid)
+2.MySQL中的自增列
+auto_INCREMENT（increment）：自动增长，加入一个列声明了自增列，无需手动复制，直接设置为NULL，会获取当前的最大值，然后加1插入。
+注意：
+        自增列允许手动赋值
+        只适用于整数型的主键列上
+练习：创建脚本文件02_tedu.sql,创建数据库，tedu，设置编码。
+创建部门表dept（did，dname）
+10   研发部      20   市场部         30  运营部  40 测试部
+创建员工表emp（eid、ename、sex、birthday生日、salary工资、deptld所属部门编号）
+插入15条记录，有一个员工没有确定部门，有一个部门没有员工
+简单查询：
+（1）查询特定的列
+示例：查询所有员工的姓名、工资、生日
+SELECT ename,salary,birthday FROM emp;
+练习：查询所有员工的编号，姓名，性别，所属部门编号
+SELECT eid,ename,sex,deptid FROM emp;
+(2)查询所有的列
+select * from emp;
+select eid,ename,sex,birthday,salary,deptId from emp;
+(3)给列起别名
+示例：查询所有员工的姓名和工资，使用汉字的别名显示
+select ename AS 姓名,salary AS 工资 from emp;
+练习：查询所有员工的编号，姓名，性别，生日，用中文别名
+select eid AS 编号,ename AS 姓名,sex AS 性别,birthday AS 生日 from emp;
+select eid AS A,ename AS B,sex AS C from emp;
+注意：AS关键字是可以省略的，保留空格。
+（4）只显示不同的记录/合并相同的记录
+示例：查询出员工都在哪些部门
+SELECT DISTINCT deptId FROM emp;
+练习：查询出都有哪些性别的员工
+SELECT DISTINCT sex FROM emp;
+(5)在查询时执行计算
+示例：计算2*33/40-8+10
+SELECT 2*33/40-8+10
+查询出所有员工的姓名和年薪
+select ename 姓名,salary*12 年薪 from emp;
+练习：假设每个员工工资增加500元，年终奖5000元，查询所有员工的姓名及其年薪，要给列起别名
+select ename 姓名,(salary+500)*12+5000 年薪 from emp;
+（6）查询结果集的排序
+示例：查询所有的部门，结果按照部门编号升序排序
+select *from dept order by did ASC;#ascendant
+示例：查询所有的部门，结果按照部门编号降序排序
+select * from dept order by did DESC;#descendant
+练习：查询所有员工信息，结果按照工资由大到小排序
+select *from emp order by salary DESC;
+练习：查询所有员工，结果按照年龄由大到小排序；
+select *from emp order by birthday ASC;
+练习：查询所有员工，结果按照年龄由小到大排序；
+select *from emp order by birthday DESC;
+练习：查询所有员工，结果按照姓名的升序排序
+select *from emp order by ename ASC;
+练习：查询所有员工，结果按照工资降序排序，如果工资相同，按照姓名排序
+select *from emp ORDER BY salary DESC,ename;
+练习：查询所有员工，结果按照性别排序，性别相同按照工资的升序排序。
+select * from emp ORDER BY sex,salary;
+ORDER BY 可以按照数值、日期、时间、字符串来排序默认按照ASC升序排序
+(7)条件查询
+查询编号为5的员工所有信息
+select *from emp where eid=5;
+练习：查询出姓名为king的员工的编号，工资，生日。
+select eid,salary,birthday  FROM emp WHERE ename="king";
+练习：查询出20号部门所有员工的信息
+select * FROM emp where deptId=20;
+练习：查询出男员工的所有信息
+select * from emp where sex=1;
+练习：查询出工资大于等于5000的员工的所有信息
+select * from emp where salary>=5000;
+>=    <=    >    <    =   !=
+练习：查询出1991年1月1日后出生的员工
+select * from emp where birthday>"1991-1-1";
+练习：查询出不在10号部门的员工所有信息
+select * from emp where deptId!=10;
+练习：查询出没有明确部门的员工的所有信息
+select * from emp where deptId=null;
+练习：查询出有明确部门的员工所有信息
+select * from emp where deptId is not null;
+练习：查询出工资大于6000的女员工所有信息
+select * from emp where sex=0 and salary>6000;
+练习：查询出工资在5000-7000之间所有的员工所有信息
+select * from emp where salary >=5000 and salary <=7000;
+select * from emp where salary BETWEEN 5000 AND7000;
+练习：查询出工资为5000以下，7000以上的员工所有信息
+select * from emp where salary <=5000 or salary >=7000;
+select * from emp where salary NOT BETWEEN 5000 AND7000;
+练习：查询出1990年之前出生的员工，和1993年后出生的员工
+select * from emp where birthday NOT BETWEEN "1990-1-1" AND "1993-12-31";
+练习：查询出1993年出生的员工所有信息
+select * from emp where birthday >="1993-1-1" AND birthday<="1993-12-31";
+练习：查询出10号部门和30号部门员工所有信息
+select * from emp where deptId=10 or deptId=30;
+select * from emp where deptId in(10,30);
+练习：查询不在10号和30号部门员工所有信息
+select * from emp where deptId Not in(10,30);
+is null/is not null 
+and/or
+between...and.../Not BETWEEN...AND...
+IN()/NOT IN()
+注意：删除、更改、查询都可以结合条件查询。
+（8）模糊条件条件
+示例:查询出员工姓名含有字母e的员工的所有信息
+select * from emp where ename LIKE "%e%";
+练习：查询出姓名中以e结尾的员工所有信息
+select * from emp where ename LIKE"%e";
+练习：查询出姓名中倒数第2个字符为e的员工所有信息
+select * from emp where ename LIKE"%e_";
+sql中提供了两个模糊查询的字符
+% 可以匹配任意多个字符  >=0
+_  可以匹配任意一个字符  =1
+注意：以上的这两个匹配不能和=使用，必须要使用LIKE关键字
+（9）分页查询
+     假如查询的结果集中有太多的数据，一次显示不完，可以分页显示
+需要有两个条件 ：当前的页码、每页的数据量
+SELECT * FROM emp LIMIT  start,count;
+start: 是一个数字，从结果集中的哪1条开始读取，第1条 称为0 
+count：是一个数字，最多读取的行数
+每页开始的算法
+start=(页码-1)*count
+假设每一页显示5条记录
+第一页：SELECT *FROM emp LIMIT 0,5;
+第二页：SELECT *FROM emp LIMIT 5,5;
+第三页：SELECT *FROM emp LIMIT 10,5;
+第四页：SELECT＊FROM emp LIMIT 15.5;
+假设每一页显示6条记录
+第一页：SELECT * FROM emp LIMIT 0,6;
+第二页:  SELECT * FROM emp LIMIT 6,6;
+课后任务：
+（1）复习今天内容，删除代码，保留注释重新编写代码
+（2）练习：
+	查询出工资为8000以上的女员工的姓名，性别，生日，结果集按照工资的降序排序，取前3个人。
+（3）查看"学子商城"表结构图
